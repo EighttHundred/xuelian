@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.dao;
+package ruanku.xuelian_requirement.BBS.dao;
 
 import ruanku.xuelian_requirement.model.Dept;
 import org.apache.ibatis.annotations.Select;

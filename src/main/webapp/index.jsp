@@ -12,5 +12,6 @@
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/dept/list">测试</a>
+<script src="/test.js" charset="utf-8"></script>
 </body>
 </html>

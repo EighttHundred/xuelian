@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.controller;
+package ruanku.xuelian_requirement.BBS.controller;
 import ruanku.xuelian_requirement.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

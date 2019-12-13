@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.service;
+package ruanku.xuelian_requirement.BBS.service;
 
 import ruanku.xuelian_requirement.model.Dept;
 

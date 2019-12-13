@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.service.impl;
+package ruanku.xuelian_requirement.BBS.service.impl;
 
 import ruanku.xuelian_requirement.dao.DeptMapper;
 import ruanku.xuelian_requirement.model.Dept;

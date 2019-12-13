@@ -7,8 +7,10 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface BeanMark
+public @interface SQLServerMark
 {
-    String tableName();
-    String primaryKey();
+    String serverName();
+    String url();
+    String userName();
+    String passWord();
 }

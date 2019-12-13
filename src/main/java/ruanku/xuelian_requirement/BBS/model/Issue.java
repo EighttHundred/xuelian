@@ -7,6 +7,8 @@ public class Issue
     private int issueId;
     //1:hire information 2:expirence share 4:techic discuss
     @IntMark
+    private int userId;
+    @IntMark
     private int topics;
     @VarcharMark(len = 50)
     private String publishTime;
@@ -20,10 +22,6 @@ public class Issue
     private String content;
     @VarcharMark(len = 50)
     private String title;
-    @BeanMark(tableName = "UserUser",primaryKey = "userId")
-    private User user;
-    @BeanMark(tableName = "BBSComment",primaryKey = "commentId")
-    private Comment[] comments;
     public int getIssueId()
     {
         return this.issueId;
@@ -31,6 +29,14 @@ public class Issue
     public void setIssueId(int issueId)
     {
         this.issueId=issueId;
+    }
+    public int getUserId()
+    {
+        return this.userId;
+    }
+    public void setUserId(int userId)
+    {
+        this.userId=userId;
     }
     public int getTopics()
     {
@@ -88,20 +94,5 @@ public class Issue
     {
         this.title=title;
     }
-    public User getUser()
-    {
-        return this.user;
-    }
-    public void setUser(User user)
-    {
-        this.user=user;
-    }
-    public Comment[] getComments()
-    {
-        return comments;
-    }
-    public void setComments(Comment[] comments)
-    {
-        this.comments=comments;
-    }
+
 }
