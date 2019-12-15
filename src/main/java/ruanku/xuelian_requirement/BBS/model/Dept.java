@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.model;
+package ruanku.xuelian_requirement.BBS.model;
 
 /**
  * 创建dept部门实体类

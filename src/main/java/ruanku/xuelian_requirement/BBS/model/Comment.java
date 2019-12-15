@@ -5,6 +5,6 @@ import ruanku.xuelian_requirement.common.annotations.*;
 public class Comment
 {
     private int commentId;
-    private String publishTime="";
-    private String content="";
+    private String publishTime;
+    private String content;
 }

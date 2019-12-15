@@ -1,7 +1,5 @@
 package test;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.junit.Test;
 
 import net.sf.json.JSONObject;
@@ -44,7 +42,6 @@ public class JsonTest {
             System.out.println(json1.toString());
         } catch (Exception e) {
             System.out.println("error test");
-            //TODO: handle exception
         }
     }
 }
