@@ -27,7 +27,12 @@ public class MysqlProcessor
         }
     }
     public static boolean createTable(String sql){
-
+        try{
+            stmt.execute(sql);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return false;
     }
     public static boolean update(String sql){
