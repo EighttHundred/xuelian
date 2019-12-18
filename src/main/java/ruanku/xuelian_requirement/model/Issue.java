@@ -1,6 +1,6 @@
-package ruanku.xuelian_requirement.BBS.model;
+package ruanku.xuelian_requirement.model;
 import ruanku.xuelian_requirement.common.annotations.*;
-@BeanMark(tableName = "BBSIssue",primaryKey = "issueId")
+@BeanMark(tableName = "Issue",primaryKey = "issueId")
 public class Issue
 {
     @IntMark(constraint = @Constraint(isPrimaryKey = true),autoIncrement = true)

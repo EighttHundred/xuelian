@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.common;
+package ruanku.xuelian_requirement.common.utils;
 
 public class FieldVo {
     private String field;//domain的field

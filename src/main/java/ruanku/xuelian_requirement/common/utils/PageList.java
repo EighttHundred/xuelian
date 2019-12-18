@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.common;
+package ruanku.xuelian_requirement.common.utils;
 
 import java.util.ArrayList;
 import java.util.List;

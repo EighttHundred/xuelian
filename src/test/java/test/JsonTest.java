@@ -3,7 +3,7 @@ package test;
 import org.junit.Test;
 
 import net.sf.json.JSONObject;
-import ruanku.xuelian_requirement.BBS.model.*;
+import ruanku.xuelian_requirement.model.*;
 import ruanku.xuelian_requirement.common.processors.*;
 
 public class JsonTest {

@@ -2,7 +2,7 @@ package test;
 
 import org.junit.Test;
 
-import ruanku.xuelian_requirement.BBS.model.*;
+import ruanku.xuelian_requirement.model.*;
 import ruanku.xuelian_requirement.common.processors.*;
 
 public class CommandTest

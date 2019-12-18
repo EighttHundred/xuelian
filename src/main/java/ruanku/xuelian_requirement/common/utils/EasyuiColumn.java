@@ -1,4 +1,4 @@
-package ruanku.xuelian_requirement.common;
+package ruanku.xuelian_requirement.common.utils;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
