@@ -18,6 +18,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="ruanku.xuelian_requirement.dao/DeptMapper.xml"/>
+        <!-- <mapper resource="ruanku.xuelian_requirement.dao/DeptMapper.xml"/> -->
     </mappers>
 </configuration>

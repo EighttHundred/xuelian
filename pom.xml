@@ -318,7 +318,20 @@
                     <localRepositoryPath>${tomcat.deploy.path}</localRepositoryPath>
                 </configuration>
             </plugin> 
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <id>verify-deploy</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -363,18 +376,19 @@
                 <executions>
                     <execution>
                         <id>verify-deploy</id>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>deployer-deploy</goal>
-                            <goal>start</goal>
+                            <!-- <goal>start</goal> -->
+                            <goal>run</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>clean-undeploy</id>
+                        <!-- <id>clean-undeploy</id>
                         <phase>pre-clean</phase>
                         <goals>
                             <goal>stop</goal>
-                        </goals>
+                        </goals> -->
                     </execution>
                 </executions>
             </plugin>
@@ -402,7 +416,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
+            
             
         </plugins>
         <!--扫描的资源 -->

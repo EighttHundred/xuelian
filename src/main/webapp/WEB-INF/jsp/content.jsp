@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> 
-<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
-<script type="application/javascript" src="static/jquery-3.4.1.min.js"></script>
-<script src="static/layui/layui.js" charset="utf-8"></script>
+<%@ include file="/WEB-INF/jsp/common.jsp"%>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
   <legend>卡片面板</legend>

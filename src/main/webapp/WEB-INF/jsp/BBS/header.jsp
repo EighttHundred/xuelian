@@ -1,8 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> 
-<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
-<script type="application/javascript" src="static/jquery-3.4.1.min.js"></script>
-<script src="static/layui/layui.js" charset="utf-8"></script>
-
+<%@ include file="/WEB-INF/jsp/common.jsp"%>
 <ul class="layui-nav">
   <li class="layui-nav-item">
     <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">控制台</a>
