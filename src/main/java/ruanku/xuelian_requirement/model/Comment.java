@@ -2,7 +2,7 @@ package ruanku.xuelian_requirement.model;
 
 import java.sql.Timestamp;
 import ruanku.xuelian_requirement.common.annotations.*;
-import ruanku.xuelian_requirement.common.enums.OtherStaticType;
+import ruanku.xuelian_requirement.common.enums.*;
 
 //show public
 @BeanMark(tableName = "Comment", primaryKey = "commentId")

@@ -55,6 +55,26 @@ public class CommandProcessor
                     }
                     columns.add(column);
                 }
+                else if(mark instanceof OtherTypeMark){
+                    String column=field.getName();
+                    OtherTypeMark otherTypeMark=(OtherTypeMark)mark;
+                    switch (otherTypeMark.type()) {
+                        case BOOLEAN:
+                            column+=" TINYINT(1)";
+                            break;
+                        case FLOAT:
+                            column+=" FLOAT";
+                            break;
+                        case DOUBLE:
+                            column+=" DOUBLE";
+                            break;
+                        case TIMESTAMP:
+                            column+=" TIMESTAMP";
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
             String sqlCommand="CREATE TABLE "+tableName+"(";
             for(String column:columns)
