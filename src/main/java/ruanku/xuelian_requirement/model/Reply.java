@@ -1,6 +1,6 @@
 package ruanku.xuelian_requirement.model;
 import ruanku.xuelian_requirement.common.annotations.*;
-
+//show public
 @BeanMark(tableName = "Reply",primaryKey = "replyId")
 public class Reply
 {

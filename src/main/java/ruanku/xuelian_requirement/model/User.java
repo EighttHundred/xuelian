@@ -1,5 +1,7 @@
 package ruanku.xuelian_requirement.model;
 import ruanku.xuelian_requirement.common.annotations.*;
+//not show
+//only be transfered from front-end to back-end
 @BeanMark(tableName = "User",primaryKey = "userId")
 public class User
 {

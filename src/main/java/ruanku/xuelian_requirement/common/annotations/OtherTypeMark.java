@@ -7,9 +7,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface IntMark
+public @interface OtherTypeMark
 {
     Constraint constraint() default @Constraint;
-    boolean autoIncrement() default false;
-    IntType intType() default IntType.INT;
+    OtherStaticType type();
 }
