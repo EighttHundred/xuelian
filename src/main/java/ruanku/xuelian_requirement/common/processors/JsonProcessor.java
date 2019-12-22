@@ -74,4 +74,11 @@ public class JsonProcessor {
         }
         return jsonObject;
     }
+    public static String layuiParse(JSONObject[] jsons){
+        String data="[";
+        for(JSONObject json:jsons){
+            data+=json.toString()+",";
+        }
+        return data.substring(0, data.length()-1)+"]";
+    }
 }

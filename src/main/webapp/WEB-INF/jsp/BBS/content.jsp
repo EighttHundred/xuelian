@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> 
-<%@ include file="/WEB-INF/jsp/common.jsp"%>
-
+<%@ include file="/WEB-INF/jsp/util/dependency.jsp"%>
+<%@ include file="/WEB-INF/jsp/common/head.jsp"%>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
   <legend>卡片面板</legend>
 </fieldset>   
- 
+
 <div style="padding: 20px; background-color: #F2F2F2;">
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md6">

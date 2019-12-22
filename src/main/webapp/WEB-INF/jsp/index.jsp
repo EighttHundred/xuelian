@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> 
-<%@ include file="/WEB-INF/jsp/common.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/jsp/util/dependency.jsp"%>
+
 <style>
   body{margin: 10px;}
   .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
