@@ -22,10 +22,11 @@ public class UserController{
     @RequestMapping("seekerRegist")
     @ResponseBody
     public String seekerRegist(@RequestParam Map<String,Object> map){
-        if(UserService.createUser(map)==true){
-            return "true";
-        }else{
-            return "false";
-        }
+        return UserService.createUser(map);
+    }
+    @RequestMapping("checkUser")
+    @ResponseBody
+    public String checkUser(@RequestParam Map<String,Object> map){
+        return UserService.checkUser(map);
     }
 }

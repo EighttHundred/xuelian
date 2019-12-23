@@ -12,8 +12,8 @@ public class Issue
     //1:hire information 2:expirence share 4:techic discuss
     @IntMark
     private int userId;
-    @IntMark
-    private TopicType topics;
+    @VarcharMark(len = 50)
+    private String topics;
     @VarcharMark(len = 5000)
     private String content;
     @VarcharMark(len = 50)

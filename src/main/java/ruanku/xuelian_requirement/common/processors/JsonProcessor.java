@@ -3,7 +3,7 @@ package ruanku.xuelian_requirement.common.processors;
 import java.lang.reflect.Field;
 
 import net.sf.json.JSONObject;
-
+import java.sql.Timestamp;
 public class JsonProcessor {
     /*
     private static int nextQuote(String data, int pos, int len) {
@@ -39,6 +39,18 @@ public class JsonProcessor {
                             break;
                         case "int":
                             field.set(obj,Integer.parseInt(str[1]));
+                            break;
+                        case "float":
+                            field.set(obj,Float.parseFloat(str[1]));
+                            break;
+                        case "double":
+                            field.set(obj,Double.parseDouble(str[1]));
+                            break;
+                        case "boolean":
+                            field.set(obj,Boolean.parseBoolean(str[1]));
+                            break;
+                        case "Timestamp":
+                            field.set(obj,Timestamp.valueOf(str[1]));
                             break;
                         default:
                             break;

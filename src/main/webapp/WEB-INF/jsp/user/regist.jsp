@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/util/dependency.jsp"%>
 
-
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>用户注册</legend>
 </fieldset>
@@ -37,64 +36,48 @@
   
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <button type="button" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+      <button type="button" class="layui-btn" lay-submit lay-filter="registUser">立即提交</button>
       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
   </div>
 </form>
  
 <script>
-layui.use(['form', 'layedit', 'laydate'], function(){
-  var form = layui.form
-  ,layer = layui.layer
-  ,layedit = layui.layedit
-  ,laydate = layui.laydate;
-  
 
-  //创建一个编辑器
-  var editIndex = layedit.build('LAY_demo_editor');
- 
-  //自定义验证规则
-  form.verify({
-    // pass: [
-    //   /^[\S]{6,12}$/
-    //   ,'密码必须6到12位，且不能出现空格'
-    // ]
-    // ,content: function(value){
-    //   layedit.sync(editIndex);
-    // }
-  });
+layui.use(['form'], function(){
+  var form = layui.form;
   
-  //监听指定开关
-  form.on('switch(switchTest)', function(data){
-    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-      offset: '6px'
-    });
-    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+  form.verify({
+    pass: [
+      /^[\S]{6,}$/
+      ,'密码必须大于6位'
+    ],
+    passCheck: function(){
+      if($("input[name='passWord'").val()!=$("input[name='passWordCheck'").val()){
+        return '两次密码输入不一致';
+      }
+    }
   });
   
   //监听提交
-  form.on('submit(demo1)', function(data){
-
-    data=$.ajax({
+  form.on('submit(registUser)', function(data){
+    $.ajax({
       async:false,
       type:"post",
       url:"seekerRegist",
-      // dataType:"JSON",
       data:data.field,
       success:function(data){
-        $(location).attr('href', 'login');
+        if(data='true'){
+          $(location).attr('href', 'login');
+        }else{
+          alert('登陆失败');
+        }
       },
       error:function(){
         alert("error");
       }
     });
-  });
-
-  //表单取值
-  layui.$('#LAY-component-form-getval').on('click', function(){
-    var data = form.val('example');
-    alert(JSON.stringify(data));
+    
   });
   
 });

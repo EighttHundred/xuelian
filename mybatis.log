@@ -108,3 +108,5 @@
 [WARN][2019-12-23 09:24:23,685][net.sf.json.JSONObject]Tried to assign property content:java.lang.String to bean of class ruanku.xuelian_requirement.model.Issue
 [WARN][2019-12-23 09:25:40,076][net.sf.json.JSONObject]Tried to assign property content:java.lang.String to bean of class ruanku.xuelian_requirement.model.Issue
 [WARN][2019-12-23 09:51:09,404][net.sf.json.JSONObject]Tried to assign property content:java.lang.String to bean of class ruanku.xuelian_requirement.model.Issue
+[WARN][2019-12-23 21:03:09,877][net.sf.json.JSONObject]Tried to assign property content:java.lang.String to bean of class ruanku.xuelian_requirement.model.Issue
+[WARN][2019-12-23 21:05:36,136][net.sf.json.JSONObject]Tried to assign property content:java.lang.String to bean of class ruanku.xuelian_requirement.model.Issue

@@ -27,8 +27,8 @@ public class Position
     private String welfare;
     @IntMark
     private int salary;
-    @IntMark
-    private CityType city;
+    @VarcharMark(len = 50)
+    private String city;
     @IntMark
     private int demands;
 }

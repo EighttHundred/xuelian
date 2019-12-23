@@ -18,7 +18,6 @@ public class User
     private String passWord;
     @OtherTypeMark(type = OtherStaticType.TIMESTAMP)
     private Timestamp registTime;
-    // 0 enterprise 1 normal
-    @IntMark
-    private UserType userType;
+    @VarcharMark(len = 50)
+    private String userType;
 }   
