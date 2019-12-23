@@ -1,18 +1,17 @@
 package ruanku.xuelian_requirement.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import net.sf.json.JSONObject;
+import ruanku.xuelian_requirement.service.UserService;
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController{
-    @RequestMapping("/center")
-    public String center(){
-        return "user/center";
-    }
-    @RequestMapping("/login")
+    @RequestMapping("login")
     public String login(){
         return "user/login";
     }
@@ -20,9 +19,13 @@ public class UserController{
     public String regist(){
         return "user/regist";
     }
-    @RequestMapping("show")
+    @RequestMapping("seekerRegist")
     @ResponseBody
-    public String show(JSONObject data){
-        return data.toString();
+    public String seekerRegist(@RequestParam Map<String,Object> map){
+        if(UserService.createUser(map)==true){
+            return "true";
+        }else{
+            return "false";
+        }
     }
 }

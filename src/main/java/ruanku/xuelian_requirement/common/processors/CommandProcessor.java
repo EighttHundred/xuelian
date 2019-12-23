@@ -74,6 +74,7 @@ public class CommandProcessor
                         default:
                             break;
                     }
+                    columns.add(column);
                 }
             }
             String sqlCommand="CREATE TABLE "+tableName+"(";
@@ -99,11 +100,9 @@ public class CommandProcessor
             {
                 try {
                     field.setAccessible(true);
-                    sqlCommand+=" "+field.getName()+" = ";
                     Object obj=field.get(bean);
-                    if(obj==null){
-                        sqlCommand+="\'\',";
-                    }else{
+                    if(obj!=null){
+                        sqlCommand+=" "+field.getName()+" = ";
                         sqlCommand+="\'"+obj.toString()+"\',";
                     }
                 } catch (Exception e) {

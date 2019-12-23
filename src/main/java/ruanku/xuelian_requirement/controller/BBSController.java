@@ -17,27 +17,5 @@ import ruanku.xuelian_requirement.model.User;
 @RequestMapping("BBS")
 @SessionAttributes()
 public class BBSController{
-    @RequestMapping("content")
-    public String content(Model model){
-        
-        return "BBS/content";
-    }
-    @RequestMapping("page")
-    public String page(){
-        return "BBS/page";
-    }
 
-    @RequestMapping("test")
-    public String test(){
-        return "BBS/test";
-    }
-    @RequestMapping("get")
-    @ResponseBody
-    public String get(){
-        User user=new User();
-        BeanProcessor.set(user, "userId", 1);
-        BeanProcessor.set(user, "mailAddress", "2607577828@qq.com");
-        JSONObject obj=JsonProcessor.toJson(user);
-        return "["+obj.toString()+"]";
-    }
 }

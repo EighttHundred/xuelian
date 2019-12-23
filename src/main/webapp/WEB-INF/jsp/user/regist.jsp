@@ -2,24 +2,42 @@
 <%@ include file="/WEB-INF/jsp/util/dependency.jsp"%>
 
 
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>用户注册</legend>
+</fieldset>
+
 <form class="layui-form" action="">
   <div class="layui-form-item">
-    <label class="layui-form-label">单行输入框</label>
+    <label class="layui-form-label">邮箱</label>
     <div class="layui-input-block">
-      <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="用户名" class="layui-input">
+      <input type="text" name="mailAddress" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
     </div>
   </div>
   
   <div class="layui-form-item">
-    <label class="layui-form-label">单行输入框</label>
+    <label class="layui-form-label">手机号</label>
     <div class="layui-input-block">
-      <input type="text" name="password" lay-verify="title" autocomplete="off" placeholder="密码" class="layui-input">
+      <input type="text" name="phoneNumber" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">密码</label>
+    <div class="layui-input-block">
+      <input type="password" name="passWord" lay-verify="pass" autocomplete="off" placeholder="" class="layui-input">
+    </div>
+  </div>
+
+    <div class="layui-form-item">
+    <label class="layui-form-label">重复输入密码</label>
+    <div class="layui-input-block">
+      <input type="password" name="passWordCheck" lay-verify="passCheck" autocomplete="off" placeholder="" class="layui-input">
     </div>
   </div>
   
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+      <button type="button" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
   </div>
@@ -32,25 +50,13 @@ layui.use(['form', 'layedit', 'laydate'], function(){
   ,layedit = layui.layedit
   ,laydate = layui.laydate;
   
-  //日期
-  laydate.render({
-    elem: '#date'
-  });
-  laydate.render({
-    elem: '#date1'
-  });
-  
+
   //创建一个编辑器
   var editIndex = layedit.build('LAY_demo_editor');
  
   //自定义验证规则
   form.verify({
-    // title: function(value){
-    //   if(value.length < 5){
-    //     return '标题至少得5个字符啊';
-    //   }
-    // }
-    // ,pass: [
+    // pass: [
     //   /^[\S]{6,12}$/
     //   ,'密码必须6到12位，且不能出现空格'
     // ]
@@ -69,19 +75,20 @@ layui.use(['form', 'layedit', 'laydate'], function(){
   
   //监听提交
   form.on('submit(demo1)', function(data){
-    // data.field.shstate = 1;
-    // $.ajax({
-    //   url:"../BBS/get",async:false，
-    //   data:data.field
-    // });
-          $.ajax({
-            "type":"post",
-            "url":"show",
-            "data":data.field,
-            "success":function(data){
-                alert(data);
-            }
-          });
+
+    data=$.ajax({
+      async:false,
+      type:"post",
+      url:"seekerRegist",
+      // dataType:"JSON",
+      data:data.field,
+      success:function(data){
+        $(location).attr('href', 'login');
+      },
+      error:function(){
+        alert("error");
+      }
+    });
   });
 
   //表单取值

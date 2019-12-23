@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MysqlProcessor
 {
-    private static String url="jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=GMT&characterEncoding=gbk";
+    private static String url="jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=GMT&characterEncoding=gbk&allowPublicKeyRetrieval=true";
     private static String username="root";
     private static String password="eight";
     private static Connection conn=null;

@@ -21,4 +21,4 @@ public class User
     // 0 enterprise 1 normal
     @IntMark
     private UserType userType;
-}
+}   
