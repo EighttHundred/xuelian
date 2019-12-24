@@ -77,12 +77,12 @@ public class CommandProcessor
                     columns.add(column);
                 }
             }
-            String sqlCommand="CREATE TABLE "+tableName+"(";
+            String sqlCommand="CREATE TABLE "+tableName+" (";
             for(String column:columns)
             {
                 sqlCommand+=column+",";
             }
-            sqlCommand=sqlCommand.substring(0,sqlCommand.length()-1)+")";
+            sqlCommand=sqlCommand.substring(0,sqlCommand.length()-1)+" )";
             return sqlCommand;
         }
         return null;

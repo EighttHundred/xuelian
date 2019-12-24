@@ -15,18 +15,43 @@ public class UserController{
     public String login(){
         return "user/login";
     }
-    @RequestMapping("regist")
-    public String regist(){
-        return "user/regist";
+    @RequestMapping("choose")
+    public String chooseRegist(){
+        return "user/chooseRegist";
     }
     @RequestMapping("seekerRegist")
+    public String seeker(){
+        return "user/seekerRegist";
+    }
+    @RequestMapping("enterpriseRegist")
+    public String enterprise(){
+        return "user/enterpriseRegist";
+    }
+    
+    @RequestMapping("seekerCenter")
+    public String seekerCenter(){
+        return "user/seekerCenter";
+    }
+
+    @RequestMapping("BBSUserCenter")
+    public String BBSUserCenter(){
+        return "user/BBSUserCenter";
+    }
+
+    @RequestMapping("doSeekerRegist")
     @ResponseBody
     public String seekerRegist(@RequestParam Map<String,Object> map){
-        return UserService.createUser(map);
+        return UserService.createSeeker(map);
     }
-    @RequestMapping("checkUser")
+    @RequestMapping("doEnterpriseRegist")
     @ResponseBody
-    public String checkUser(@RequestParam Map<String,Object> map){
-        return UserService.checkUser(map);
+    public String enterpriseRegist(@RequestParam Map<String,Object> map){
+        return UserService.createEnterprise(map);
+    }
+
+    @RequestMapping("doCheckLogin")
+    @ResponseBody
+    public String checkLogin(@RequestParam Map<String,Object> map){
+        return UserService.checkLogin(map);
     }
 }

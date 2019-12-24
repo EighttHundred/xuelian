@@ -14,6 +14,7 @@ public class TimeTest {
     @Test
     public void datetest(){
         System.out.println(Calendar.getInstance().get(Calendar.MINUTE));
+        
     }
     @Test
     public void timeStampTest(){

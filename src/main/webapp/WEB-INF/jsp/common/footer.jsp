@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/WEB-INF/jsp/util/dependency.jsp"%>
-<%@ include file="/WEB-INF/jsp/common/head.jsp"%>
-<!DOCTYPE html>
-<html>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/layui/css/layui.css">
+<script type="application/javascript" src="${pageContext.request.contextPath}/static/jquery/jquery-3.4.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/layui/layui.js" charset="utf-8"></script>
+
+
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
 </fieldset>
 <body>
@@ -15,8 +16,3 @@
                 <button type="button" value="button4" class="layui-btn" style="width: 200px;height: 200px">个人中心</button>
     </div>
 
-
-<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-</body>
-</html>

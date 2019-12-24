@@ -10,6 +10,8 @@ public class Seeker
     private int userId;
     @VarcharMark(len = 50)
     private String userName;
+    @VarcharMark(len = 50)
+    private String mailAddress;
     @VarcharMark(len = 200)
     private String profile;
 }

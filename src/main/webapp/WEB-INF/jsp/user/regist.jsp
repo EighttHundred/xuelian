@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/WEB-INF/jsp/util/dependency.jsp"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/layui/css/layui.css">
+<script type="application/javascript" src="${pageContext.request.contextPath}/static/jquery/jquery-3.4.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/layui/layui.js" charset="utf-8"></script>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>用户注册</legend>
@@ -67,7 +69,7 @@ layui.use(['form'], function(){
       url:"seekerRegist",
       data:data.field,
       success:function(data){
-        if(data='true'){
+        if(data=='true'){
           $(location).attr('href', 'login');
         }else{
           alert('登陆失败');

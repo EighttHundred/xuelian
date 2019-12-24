@@ -3,37 +3,50 @@
 <script type="application/javascript" src="${pageContext.request.contextPath}/static/jquery/jquery-3.4.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/layui/layui.js" charset="utf-8"></script>
 
-
-
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>用户登录</legend>
+    <legend>用户注册</legend>
 </fieldset>
 
 <form class="layui-form" action="">
+
   <div class="layui-form-item">
-    <label class="layui-form-label">账号</label>
+    <label class="layui-form-label">用户名</label>
+    <div class="layui-input-block">
+      <input type="text" name="userName" lay-verify="userName" autocomplete="off" placeholder="" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">手机号</label>
     <div class="layui-input-block">
       <input type="text" name="phoneNumber" lay-verify="phoneNumber" autocomplete="off" placeholder="" class="layui-input">
     </div>
   </div>
   
-
   <div class="layui-form-item">
     <label class="layui-form-label">密码</label>
     <div class="layui-input-block">
       <input type="password" name="passWord" lay-verify="passWord" autocomplete="off" placeholder="" class="layui-input">
     </div>
   </div>
+
+    <div class="layui-form-item">
+    <label class="layui-form-label">重复输入密码</label>
+    <div class="layui-input-block">
+      <input type="password" name="passWordCheck" lay-verify="passWordCheck" autocomplete="off" placeholder="" class="layui-input">
+    </div>
+  </div>
   
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <button type="button" class="layui-btn" lay-submit lay-filter="login1">登录</button>
+      <button type="button" class="layui-btn" lay-submit lay-filter="seekerRegist">提交</button>
       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
   </div>
 </form>
  
 <script>
+
 layui.use(['form'], function(){
   var form = layui.form;
   
@@ -42,44 +55,37 @@ layui.use(['form'], function(){
       /^[\S]{6,}$/
       ,'密码必须大于6位'
     ],
-    phoneNumber: [
-      /[\S]{1,}/
-      ,'账号不能为空'
-    ]
+    passWordCheck: function(){
+      if($("input[name='passWord'").val()!=$("input[name='passWordCheck'").val()){
+        return '两次密码输入不一致';
+      }
+    }
   });
   
-  form.on('submit(login1)', function(data){
-
+  //监听提交
+  form.on('submit(seekerRegist)', function(data){
     $.ajax({
       async:false,
       type:"post",
-      url:"doCheckLogin",
+      url:"doSeekerRegist",
       data:data.field,
       dataType:'text',
       success:function(data){
-        if(data=='SEEKER'){
-          alert('SEEKER');
-          // $(location).attr('href', 'login');
-        }else if(data=='ENTERPRISE'){
-          alert('ENTERPRISE');
-          // $(location).attr('href', 'login');
-        }else if(data=='ENTERPRISE'){
-          alert('ENTERPRISE');
-          // $(location).attr('href', 'login');
-        }else if(data=='WRONG'){
-          alert('密码错误');
-        }else if(data=='NO'){
-          alert('没有这个用户');
+        if(data=='TRUE'){
+          alert('注册成功');
+          $(location).attr('href', 'login');
+        }else if(data=='EXIST'){
+          alert('该手机号已存在');
         }else{
-          alert('登陆失败 '+data);
+          alert('注册失败');
         }
       },
       error:function(){
         alert("error");
       }
     });
-
+    
   });
-
+  
 });
 </script>

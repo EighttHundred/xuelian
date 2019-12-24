@@ -292,11 +292,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-maven2-plugin</artifactId>
             <version>1.7.0</version>
-        </dependency>
+        </dependency> -->
         <!-- servlet api end -->
     </dependencies>
     <!-- 编译 -->
@@ -343,7 +343,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
                 <version>1.7.0</version>
@@ -379,19 +379,18 @@
                         <phase>package</phase>
                         <goals>
                             <goal>deployer-deploy</goal>
-                            <!-- <goal>start</goal> -->
                             <goal>run</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <!-- <id>clean-undeploy</id>
+                        <id>clean-undeploy</id>
                         <phase>pre-clean</phase>
                         <goals>
                             <goal>stop</goal>
-                        </goals> -->
+                        </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <!-- mybatis-generator自动生成 -->
             <plugin>

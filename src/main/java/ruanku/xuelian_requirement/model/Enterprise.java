@@ -13,6 +13,8 @@ public class Enterprise
     private int userId;
     @VarcharMark(len = 50)
     private String name;
+    @VarcharMark(len = 50)
+    private String mailAddress;
     @OtherTypeMark(type = OtherStaticType.TIMESTAMP)
     private Timestamp establishTime;
     @VarcharMark(len = 2000)

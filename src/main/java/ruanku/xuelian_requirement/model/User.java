@@ -11,8 +11,6 @@ public class User
     @IntMark(constraint = @Constraint(isPrimaryKey = true),autoIncrement = true)
     private int userId;
     @VarcharMark(len = 50)
-    private String mailAddress;
-    @VarcharMark(len = 50)
     private String phoneNumber;
     @VarcharMark(len = 50)
     private String passWord;

@@ -31,4 +31,6 @@ public class Position
     private String city;
     @IntMark
     private int demands;
+    @OtherTypeMark(type = OtherStaticType.BOOLEAN)
+    private boolean show;
 }

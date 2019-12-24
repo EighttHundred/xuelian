@@ -53,6 +53,15 @@ public class MysqlProcessor
         }
         return false;
     }
+    public static boolean dropTable(String sql){
+        try{
+            stmt.execute(sql);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
     public static List<?> select(Class<?> beanType,String sql){
         try{
             List<Object> resList=new ArrayList<Object>();

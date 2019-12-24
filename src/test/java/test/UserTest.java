@@ -9,6 +9,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import ruanku.xuelian_requirement.model.*;
+import ruanku.xuelian_requirement.service.UserService;
 import ruanku.xuelian_requirement.common.processors.*;
 
 
@@ -33,5 +34,12 @@ public class UserTest {
         // if(MysqlProcessor.insert(CommandProcessor.insert(user))==true){
         //     System.out.println("insert success");
         // }
+    }
+    @Test
+    public void service(){
+        // Map<String,Object> map=new HashMap<>();
+        // map.put("phoneNumber", "12345");
+        // System.out.println(UserService.createUser(map));
+
     }
 }
