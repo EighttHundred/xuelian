@@ -2,6 +2,8 @@ package ruanku.xuelian_requirement.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,12 +21,20 @@ public class EnterpriseController{
         return mav;
     }
 
-    @RequestMapping("positionEdit")
-    public String positionEdit(){
-        return "enterprise/positionEdit";
+    @RequestMapping("positionAdd")
+    public ModelAndView positionAdd(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("enterprise/positionAdd");
+        return mav;
     }
     @RequestMapping("positionManage")
     public String positionManage(){
         return "enterprise/positionManage";
+    }
+
+    @RequestMapping("doPositionAdd")
+    @ResponseBody
+    public String doPositionAdd(HttpSession session,Map<String,Object> map){
+        return EnterpriseService.addPosition(session,map);
     }
 }
