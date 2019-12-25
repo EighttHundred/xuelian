@@ -62,11 +62,11 @@ public class MysqlProcessor
         }
         return false;
     }
-    public static List<?> select(Class<?> beanType,String sql){
+    public static <T> List<T> select(Class<T> beanType,String sql){
         try{
-            List<Object> resList=new ArrayList<Object>();
+            List<T> resList=new ArrayList<>();
             ResultSet rs=stmt.executeQuery(sql);
-            Object bean=beanType.getDeclaredConstructor().newInstance();
+            T bean=beanType.getDeclaredConstructor().newInstance();
             while(rs.next()){
                 Field[] fields=beanType.getDeclaredFields();
                 for(Field field:fields){

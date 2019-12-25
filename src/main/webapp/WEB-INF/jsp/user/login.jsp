@@ -53,11 +53,12 @@ layui.use(['form'], function(){
     $.ajax({
       async:false,
       type:"post",
-      url:"doCheckLogin",
+      url:"doLogin",
       data:data.field,
       dataType:'text',
       success:function(data){
-        if(data=='SEEKER'){
+        $.session.set();
+        if(data.status=='SEEKER'){
           alert('SEEKER');
           // $(location).attr('href', 'login');
         }else if(data=='ENTERPRISE'){

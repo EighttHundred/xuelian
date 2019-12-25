@@ -100,9 +100,15 @@ layui.use(['form'], function(){
       data:data.field,
       dataType:'text',
       success:function(data){
-        
+        if(data=='SUCCESS'){
+            alert('添加成功');
+        }else if(data=='FAIL'){
+            alert('添加失败')
+        }else{
+            alert('出错了');
+        }
       },
-      error:function(){
+      error:function(msg){
         alert("error");
       }
     });

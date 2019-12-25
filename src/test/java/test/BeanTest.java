@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Map;
+
 import org.junit.Test;
 
 import ruanku.xuelian_requirement.model.*;
@@ -11,13 +13,30 @@ public class BeanTest
     public void searchWithoutCreate()
     {
         //insert failed
-        User user=new User();
-        String sql=CommandProcessor.insert(User.class);
-        if(MysqlProcessor.insert(sql)){
-            System.out.println("success");
-        }else{
-            System.out.println("failed");
-        }
+        // User user=new User();
+        // String sql=CommandProcessor.insert(User.class);
+        // if(MysqlProcessor.insert(sql)){
+        //     System.out.println("success");
+        // }else{
+        //     System.out.println("failed");
+        // }
+    }
+
+    @Test
+    public void mapParser()
+    {
+        // User user=new User();
+        // BeanProcessor.set(user, "userId", 1);
+        // BeanProcessor.set(user, "passWord", "aaa");
+        // Map<String,Object> map=BeanProcessor.parseMap(user);
+        // System.out.println(map.get("userId"));
+        // System.out.println(map.get("passWord"));
+        // System.out.println(map.get("phoneNumber"));
+        // User user2=(User)BeanProcessor.newInstance(User.class, map);
+        // System.out.println(BeanProcessor.getInt(user2, "userId"));
+        // System.out.println(BeanProcessor.getString(user2, "passWord"));
+        // System.out.println(BeanProcessor.getString(user2, "phoneNumber"));
+        
     }
     @Test
     public void createBean()

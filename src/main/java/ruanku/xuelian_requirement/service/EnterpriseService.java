@@ -1,5 +1,6 @@
 package ruanku.xuelian_requirement.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,15 +19,38 @@ public class EnterpriseService {
         return "haha";
         
     }
-    public static String addPosition(HttpSession session,Map<String,Object> map){
-        Enterprise enterprise=(Enterprise)session.getAttribute("enterprise");
-        int enterpriseId=BeanProcessor.getInt(enterprise, "enterpriseId");
-        Position position=(Position)BeanProcessor.newInstance(Position.class, map);
+    public static String addPosition(int enterpriseId,Position position){
         BeanProcessor.set(position,"enterpriseId",enterpriseId);
         BeanProcessor.set(position, "show", false);
         if(MysqlProcessor.insert(CommandProcessor.insert(position))==true){
             return "SUCCESS";
         }
         return "FAIL";
+    }
+    public static String updatePosition(Position position){
+        if(MysqlProcessor.update(CommandProcessor.update(position))==true){
+            return "SUCCESS";
+        }
+        return "FAIL";
+    }
+    public static List<Map<String,Object>> getPositions(int enterpriseId){
+        List<Map<String,Object>> mList=new ArrayList<>();
+        String sql=CommandProcessor.select(Position.class, "enterpriseId", enterpriseId);
+        List<Position> aList=MysqlProcessor.select(Position.class, sql);
+        for(Position position:aList){
+            mList.add(BeanProcessor.parseMap(position));
+        }
+        return mList;
+    } 
+    public static Map<String,Object> getPosition(int positionId){
+        String sql=CommandProcessor.select(Position.class, "positionId", positionId);
+        List<Position> positions=MysqlProcessor.select(Position.class, sql);
+        Position position=null;
+        if(positions.isEmpty()){
+            position=new Position();
+        }else{
+            position=positions.get(0);
+        }
+        return BeanProcessor.parseMap(position);
     }
 }

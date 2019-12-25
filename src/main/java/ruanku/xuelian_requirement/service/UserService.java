@@ -1,5 +1,6 @@
 package ruanku.xuelian_requirement.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,17 +64,23 @@ public class UserService {
         return "TRUE";
     }
 
-    public static String checkLogin(Map<String,Object> map){
-        String phoneNumber=(String)map.get("phoneNumber");
+    public static Map<String,Object> checkUser(User user){
+        Map<String,Object> map=new HashMap<>();
+        String phoneNumber=BeanProcessor.get(user,"phoneNumber",String.class);
+        String passWord=BeanProcessor.get(user,"passWord",String.class);
         List<?> userList=MysqlProcessor.select(User.class, CommandProcessor.select(User.class, "phoneNumber", phoneNumber));
         if(userList.isEmpty()==false){
-            User user=(User)userList.get(0);
-            if(map.get("passWord").equals(BeanProcessor.getString(user, "passWord"))){
-                return BeanProcessor.getString(user,"userType");
+            User dUser=(User)userList.get(0);
+            if(passWord.equals(BeanProcessor.getString(dUser, "passWord"))){
+                map.put("status", "SUCCESS");
+                map.put("user", BeanProcessor.parseMap(dUser));
             }else{
-                return "WRONG";
+                map.put("status", "WRONG");
             }
+        }else{
+            map.put("status", "NONE");
         }
-        return "NO";   
+        return map;
     }
+
 }

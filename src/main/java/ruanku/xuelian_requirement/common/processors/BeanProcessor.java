@@ -1,18 +1,19 @@
 package ruanku.xuelian_requirement.common.processors;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 
 import ruanku.xuelian_requirement.common.annotations.BeanMark;
 
 public class BeanProcessor {
-    public static Object get(Object bean,String key,Class<?> type){
+    public static <T> T get(Object bean,String key,Class<T> type){
         try {
             Class<?> beanClass = bean.getClass();
             Field field=beanClass.getDeclaredField(key);
-            if(field!=null&&field.getType()==type){
+            if(field!=null && field.getType()==type){
                 field.setAccessible(true);
-                return field.get(bean);
+                return type.cast(field.get(bean));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -32,18 +33,18 @@ public class BeanProcessor {
             e.printStackTrace();
         }
     }
-    public static Object newInstance(Class<?> beanType,Map<String,Object> map){
+    public static <T> T newInstance(Class<T> beanType,Map<String,Object> map){
         BeanMark beanMark=beanType.getAnnotation(BeanMark.class);
         if(beanMark!=null){
             try{
-                Object bean=beanType.getDeclaredConstructor().newInstance();
+                T bean=beanType.getDeclaredConstructor().newInstance();
                 Field[] fields=beanType.getDeclaredFields();
                 for(Field field:fields){
                     field.setAccessible(true);
                     String name=field.getName();
                     Object value=map.get(name);
                     if(value!=null){
-                        field.set(bean,map.get(name));
+                        field.set(bean,value);
                     }
                 }
                 return bean;
@@ -54,6 +55,26 @@ public class BeanProcessor {
         return null;
     }
 
+    public static Map<String,Object> parseMap(Object bean){
+        Map<String,Object> map=new HashMap<>();
+        Class<?> beanType=bean.getClass();
+        Field[] fields=beanType.getDeclaredFields();
+        try {
+            for(Field field:fields)
+            {
+                field.setAccessible(true);
+                Object value=field.get(bean);
+                // if(value==null){
+                //     value=field.getType().getDeclaredConstructor().newInstance();
+                // }
+                map.put(field.getName(), value);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();        
+        }
+        return map;
+        
+    }
     public static int getInt(Object bean, String key) {
         Object obj=get(bean,key,int.class);
         if(obj!=null)

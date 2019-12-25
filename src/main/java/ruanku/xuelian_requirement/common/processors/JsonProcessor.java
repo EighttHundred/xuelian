@@ -70,7 +70,6 @@ public class JsonProcessor {
         JSONObject jsonObject=new JSONObject();
         Class<?> beanType=obj.getClass();
         Field[] fields=beanType.getDeclaredFields();
-        beanType.getDeclaredClasses();
         try {
             for(Field field:fields)
             {
