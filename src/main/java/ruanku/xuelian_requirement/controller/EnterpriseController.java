@@ -1,78 +1,56 @@
 package ruanku.xuelian_requirement.controller;
 
+import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import ruanku.xuelian_requirement.common.processors.BeanProcessor;
-import ruanku.xuelian_requirement.model.Position;
-import ruanku.xuelian_requirement.service.EnterpriseService;;
+import ruanku.xuelian_requirement.model.Enterprise;
+import ruanku.xuelian_requirement.dao.EnterpriseDao;
+
 @Controller
 @RequestMapping("enterprise")
 public class EnterpriseController{
+
     @RequestMapping("center")
-    public ModelAndView enterpriseCenter(){
+    public String enterprise(){
+        return "enterprise/enterpriseCenter";
+    }
+
+    //before update ,assure security
+    @RequestMapping("edit")
+    public ModelAndView edit(HttpSession session, @RequestParam int id){
         ModelAndView mav=new ModelAndView();
-        mav.setViewName("enterprise/enterpriseCenter");
-        mav.addObject("test", "hahaha");
+        Object obj=session.getAttribute("enterpriseId");
+        assert obj!=null&&(int)obj==id;
+        mav.setViewName("enterprise/edit");
+        mav.addObject("seeker", EnterpriseDao.select(id));
         return mav;
     }
 
-    @RequestMapping("positionAdd")
-    public ModelAndView positionAdd(){
+    @RequestMapping("show")
+    public ModelAndView show(@RequestParam int id){
         ModelAndView mav=new ModelAndView();
-        mav.setViewName("enterprise/positionAdd");
-        return mav;
-    }
-    
-    @RequestMapping("positionEdit")
-    public ModelAndView positionEdit(HttpServletRequest req){
-        ModelAndView mav=new ModelAndView();
-        mav.setViewName("enterprise/positionShow");
-        int positionId=(int)((Map<String,Object>)req.getAttribute("position")).get("positionId");
-        mav.addObject("positions", EnterpriseService.getPositions(positionId));
-        return mav;
-    }
-    @RequestMapping("positionShow")
-    public ModelAndView positionShow(HttpServletRequest req){
-        ModelAndView mav=new ModelAndView();
-        mav.setViewName("enterprise/positionShow");
-        int enterpriseId=(int)((Map<String,Object>)req.getAttribute("enterprise")).get("enterpriseId");
-        mav.addObject("positions", EnterpriseService.getPositions(enterpriseId));
+        mav.setViewName("enterprise/show");
+        mav.addObject("enterprise",EnterpriseDao.select(id));
         return mav;
     }
 
-    @RequestMapping("positionManage")
-    public ModelAndView positionManage(HttpSession session){
-        ModelAndView mav=new ModelAndView();
-        mav.setViewName("enterprise/positionEdit");
-        int enterpriseId=(int)((Map<String,Object>)session.getAttribute("enterprise")).get("enterpriseId");
-        mav.addObject("position", EnterpriseService.getPositions(enterpriseId));
-        return mav;
-    }
-
-    @RequestMapping("doPositionAdd")
+    @RequestMapping("update")
     @ResponseBody
-    public String doPositionAdd(HttpSession session,Map<String,Object> map){
-        Position position=BeanProcessor.newInstance(Position.class, map);
-        int enterpriseId=(int)((Map<String,Object>)session.getAttribute("enterprise")).get("enterpriseId");
-        String reply=EnterpriseService.addPosition(enterpriseId,position);
-        return reply;
-    }
-
-    @RequestMapping("doPositionUpdate")
-    @ResponseBody
-    public String doPositionUpdate(HttpServletRequest req,Map<String,Object> map){
-        Position position=(Position)BeanProcessor.newInstance(Position.class, map);
-        String reply=EnterpriseService.updatePosition(position);
-        return reply;
+    public String doEnterpriseUpdate(HttpSession session,@RequestParam int id,@RequestParam int userId,@RequestParam Map<String,String> map){
+        Enterprise enterprise=BeanProcessor.newInstance(Enterprise.class,map);
+        assert enterprise != null;
+        enterprise.setUserId(userId);
+        if(EnterpriseDao.update(enterprise)){
+            session.setAttribute("enterprise",enterprise);
+            return "SUCCESS";
+        }else return "FAIL";
     }
 
 }

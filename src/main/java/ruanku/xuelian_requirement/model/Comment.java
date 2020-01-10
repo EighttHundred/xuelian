@@ -9,9 +9,9 @@ import ruanku.xuelian_requirement.common.enums.*;
 public class Comment {
     @IntMark(constraint = @Constraint(isPrimaryKey = true), autoIncrement = true)
     private int commentId;
-    @IntMark
+    @IntMark(constraint = @Constraint(isConstant = true))
     private int issueId;
-    @IntMark
+    @IntMark(constraint = @Constraint(isConstant = true))
     private int userId;
     @IntMark
     private int likes;
@@ -19,4 +19,52 @@ public class Comment {
     private Timestamp publishTime;
     @VarcharMark(len = 150)
     private String content;
+
+    public int getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
+
+    public int getIssueId() {
+        return issueId;
+    }
+
+    public void setIssueId(int issueId) {
+        this.issueId = issueId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public Timestamp getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Timestamp publishTime) {
+        this.publishTime = publishTime;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

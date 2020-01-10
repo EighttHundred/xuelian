@@ -2,6 +2,9 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/layui/css/layui.css">
 <script type="application/javascript" src="${pageContext.request.contextPath}/static/jquery/jquery-3.4.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/layui/layui.js" charset="utf-8"></script>
+<div class="layui-layout layui-layout-admin">
+
+<%@ include file="/WEB-INF/jsp/common/header.jsp"%>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>企业注册</legend>
@@ -12,21 +15,21 @@
   <div class="layui-form-item">
     <label class="layui-form-label">企业名</label>
     <div class="layui-input-block">
-      <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="" class="layui-input">
+      <input type="text" name="name"  autocomplete="off" placeholder="" class="layui-input">
     </div>
   </div>
 
   <div class="layui-form-item">
     <label class="layui-form-label">手机号</label>
     <div class="layui-input-block">
-      <input type="text" name="phoneNumber" lay-verify="phoneNumber" autocomplete="off" placeholder="" class="layui-input">
+      <input type="text" name="phone"  autocomplete="off" placeholder="" class="layui-input">
     </div>
   </div>
   
   <div class="layui-form-item">
     <label class="layui-form-label">密码</label>
     <div class="layui-input-block">
-      <input type="password" name="passWord" lay-verify="passWord" autocomplete="off" placeholder="" class="layui-input">
+      <input type="password" name="passWord"  autocomplete="off" placeholder="" class="layui-input">
     </div>
   </div>
 
@@ -44,7 +47,7 @@
     </div>
   </div>
 </form>
- 
+</div>
 <script>
 
 layui.use(['form'], function(){
@@ -71,13 +74,13 @@ layui.use(['form'], function(){
       data:data.field,
       dataType:'text',
       success:function(data){
-        if(data=='TRUE'){
+        if(data==='SUCCESS'){
           alert('注册成功');
           $(location).attr('href', 'login');
-        }else if(data=='EXIST'){
+        }else if(data==='FAIL'){
           alert('该手机号已存在');
         }else{
-          alert('注册失败');
+          alert('注册失败'+data);
         }
       },
       error:function(){

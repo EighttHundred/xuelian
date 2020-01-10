@@ -11,7 +11,7 @@ public class BeanProcessor {
         try {
             Class<?> beanClass = bean.getClass();
             Field field=beanClass.getDeclaredField(key);
-            if(field!=null && field.getType()==type){
+            if(field!=null){
                 field.setAccessible(true);
                 return type.cast(field.get(bean));
             }
@@ -33,7 +33,7 @@ public class BeanProcessor {
             e.printStackTrace();
         }
     }
-    public static <T> T newInstance(Class<T> beanType,Map<String,Object> map){
+    public static <T> T newInstance(Class<T> beanType,Map<String,String> map){
         BeanMark beanMark=beanType.getAnnotation(BeanMark.class);
         if(beanMark!=null){
             try{
@@ -42,9 +42,22 @@ public class BeanProcessor {
                 for(Field field:fields){
                     field.setAccessible(true);
                     String name=field.getName();
-                    Object value=map.get(name);
+                    String value=map.get(name);
                     if(value!=null){
-                        field.set(bean,value);
+                        Class<?> fieldType=field.getType();
+                        if(fieldType==String.class){
+                            field.set(bean,value);
+                        }else if(value.equals("")){
+                            field.set(bean, 0);
+                        }else{
+                            if(fieldType==Float.class){
+                                field.set(bean, Float.parseFloat(value));
+                            }else if(fieldType==Double.class){
+                                field.set(bean, Double.parseDouble(value));
+                            }else if(fieldType==int.class){
+                                field.set(bean,Integer.parseInt(value));
+                            }
+                        }
                     }
                 }
                 return bean;

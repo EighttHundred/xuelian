@@ -34,7 +34,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-            p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+            p:prefix="/WEB-INF/jsp/"  p:suffix=".jsp" />
 
     <!-- 上传文件解析器 -->
     <bean id="multipartResolver"

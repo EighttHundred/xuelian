@@ -53,6 +53,15 @@ public class MysqlProcessor
         }
         return false;
     }
+    public static boolean delete(String sql){
+        try{
+            stmt.execute(sql);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
     public static boolean dropTable(String sql){
         try{
             stmt.execute(sql);
@@ -62,19 +71,21 @@ public class MysqlProcessor
         }
         return false;
     }
+
     public static <T> List<T> select(Class<T> beanType,String sql){
         try{
             List<T> resList=new ArrayList<>();
             ResultSet rs=stmt.executeQuery(sql);
-            T bean=beanType.getDeclaredConstructor().newInstance();
+
             while(rs.next()){
+                T bean=beanType.getDeclaredConstructor().newInstance();
                 Field[] fields=beanType.getDeclaredFields();
                 for(Field field:fields){
                     field.setAccessible(true);
                     String name=field.getName();
                     field.set(bean,rs.getObject(name));
                 }
-                resList.add(bean);
+                    resList.add(bean);
             }
             return resList;
         }catch (Exception e){

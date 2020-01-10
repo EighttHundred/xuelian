@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="xuelian_requirement:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>xuelian_requirement</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="xuelian_requirement.war">
+      <element id="artifact" artifact-name="xuelian_requirement:war exploded" />
+    </root>
+  </artifact>
+</component>

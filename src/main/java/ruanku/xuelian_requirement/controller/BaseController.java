@@ -9,4 +9,16 @@ public class BaseController{
     public String index(){
         return "index";
     }
+    @RequestMapping("index")
+    public String index2(){
+        return "index";
+    }
+    @RequestMapping("jobFair")
+    public String fair(){
+        return "jobFair";
+    }
+    @RequestMapping("jobFind")
+    public String find(){
+        return "jobFind";
+    }
 }

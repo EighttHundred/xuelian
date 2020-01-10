@@ -1,8 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/layui/css/layui.css">
 <script type="application/javascript" src="${pageContext.request.contextPath}/static/jquery/jquery-3.4.1.min.js"></script>
+<script type="application/javascript" src="${pageContext.request.contextPath}/static/jquery/jquerysession.js"></script>
 <script src="${pageContext.request.contextPath}/static/layui/layui.js" charset="utf-8"></script>
+<div class="layui-layout layui-layout-admin">
 
+<%@ include file="/WEB-INF/jsp/common/header.jsp"%>
 
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -13,7 +16,9 @@
   <div class="layui-form-item">
     <label class="layui-form-label">账号</label>
     <div class="layui-input-block">
-      <input type="text" name="phoneNumber" lay-verify="phoneNumber" autocomplete="off" placeholder="" class="layui-input">
+      <label>
+        <input type="text" name="phone" lay-verify="phone" autocomplete="off" placeholder="" class="layui-input">
+      </label>
     </div>
   </div>
   
@@ -21,7 +26,9 @@
   <div class="layui-form-item">
     <label class="layui-form-label">密码</label>
     <div class="layui-input-block">
-      <input type="password" name="passWord" lay-verify="passWord" autocomplete="off" placeholder="" class="layui-input">
+      <label>
+        <input type="password" name="passWord" lay-verify="passWord" autocomplete="off" placeholder="" class="layui-input">
+      </label>
     </div>
   </div>
   
@@ -32,7 +39,7 @@
     </div>
   </div>
 </form>
- 
+</div>
 <script>
 layui.use(['form'], function(){
   var form = layui.form;
@@ -42,7 +49,7 @@ layui.use(['form'], function(){
       /^[\S]{6,}$/
       ,'密码必须大于6位'
     ],
-    phoneNumber: [
+    phone: [
       /[\S]{1,}/
       ,'账号不能为空'
     ]
@@ -57,19 +64,13 @@ layui.use(['form'], function(){
       data:data.field,
       dataType:'text',
       success:function(data){
-        $.session.set();
-        if(data.status=='SEEKER'){
-          alert('SEEKER');
-          // $(location).attr('href', 'login');
-        }else if(data=='ENTERPRISE'){
-          alert('ENTERPRISE');
-          // $(location).attr('href', 'login');
-        }else if(data=='ENTERPRISE'){
-          alert('ENTERPRISE');
-          // $(location).attr('href', 'login');
-        }else if(data=='WRONG'){
+        if(data==='SUCCESS'){
+          alert('登陆成功');
+          var userType="${sessionScope.user.userType}";
+          $(location).attr('href', "../index");
+        }else if(data==='WRONG'){
           alert('密码错误');
-        }else if(data=='NO'){
+        }else if(data==='NONE'){
           alert('没有这个用户');
         }else{
           alert('登陆失败 '+data);

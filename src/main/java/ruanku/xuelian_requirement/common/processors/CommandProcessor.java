@@ -61,6 +61,7 @@ public class CommandProcessor
                     switch (otherTypeMark.type()) {
                         case BOOLEAN:
                             column+=" TINYINT(1)";
+                            // column+=" INT";
                             break;
                         case FLOAT:
                             column+=" FLOAT";
@@ -77,13 +78,13 @@ public class CommandProcessor
                     columns.add(column);
                 }
             }
-            String sqlCommand="CREATE TABLE "+tableName+" (";
+            StringBuilder sqlCommand= new StringBuilder("CREATE TABLE " + tableName + " (");
             for(String column:columns)
             {
-                sqlCommand+=column+",";
+                sqlCommand.append(column).append(",");
             }
-            sqlCommand=sqlCommand.substring(0,sqlCommand.length()-1)+" )";
-            return sqlCommand;
+            sqlCommand = new StringBuilder(sqlCommand.substring(0, sqlCommand.length() - 1) + " )");
+            return sqlCommand.toString();
         }
         return null;
     }
@@ -94,23 +95,27 @@ public class CommandProcessor
         if(beanMark!=null)
         {
             String tableName=beanMark.tableName();
-            String sqlCommand="INSERT INTO "+tableName+" SET";
+            String primaryKey=beanMark.primaryKey();
+            StringBuilder sqlCommand= new StringBuilder("INSERT INTO " + tableName + " SET");
             Field[] fields=beanClass.getDeclaredFields();
             for(Field field:fields)
             {
                 try {
                     field.setAccessible(true);
+                    String name=field.getName();
                     Object obj=field.get(bean);
-                    if(obj!=null){
-                        sqlCommand+=" "+field.getName()+" = ";
-                        sqlCommand+="\'"+obj.toString()+"\',";
+                    if(!name.equals(primaryKey)){
+                        if(obj!=null){
+                            sqlCommand.append(" ").append(field.getName()).append(" = ");
+                            sqlCommand.append("'").append(obj.toString()).append("',");
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            sqlCommand=sqlCommand.substring(0,sqlCommand.length()-1);
-            return sqlCommand;
+            sqlCommand = new StringBuilder(sqlCommand.substring(0, sqlCommand.length() - 1));
+            return sqlCommand.toString();
         }
         return null;
     }
@@ -123,7 +128,7 @@ public class CommandProcessor
             String tableName=beanMark.tableName();
             String primaryKey=beanMark.primaryKey();
             String keyValue="";
-            String sqlCommand="UPDATE "+tableName+" SET";
+            StringBuilder sqlCommand= new StringBuilder("UPDATE " + tableName + " SET");
             Field[] fields=beanClass.getDeclaredFields();
             for(Field field:fields)
             {
@@ -137,12 +142,10 @@ public class CommandProcessor
                         }else{
                             keyValue=obj.toString();
                         }
-                    }else{
-                        sqlCommand+=" "+name+" = ";
-                        if(obj==null){
-                            sqlCommand+="\'\',";
-                        }else{
-                            sqlCommand+="\'"+obj.toString()+"\',";
+                    }else if(!field.getAnnotation(Constraint.class).isConstant()){
+                        if(obj!=null){
+                            sqlCommand.append(" ").append(name).append(" = ");
+                            sqlCommand.append("'").append(obj.toString()).append("',");
                         }
                     }
                 } catch (Exception e) {
@@ -150,9 +153,9 @@ public class CommandProcessor
                 }
                 
             }
-            sqlCommand=sqlCommand.substring(0,sqlCommand.length()-1);
-            sqlCommand+=" WHERE "+primaryKey+" = '"+keyValue+"'";
-            return sqlCommand;
+            sqlCommand = new StringBuilder(sqlCommand.substring(0, sqlCommand.length() - 1));
+            sqlCommand.append(" WHERE ").append(primaryKey).append(" = '").append(keyValue).append("'");
+            return sqlCommand.toString();
         }
         return null;
     }
@@ -161,8 +164,23 @@ public class CommandProcessor
         BeanMark beanMark=beanClass.getAnnotation(BeanMark.class);
         if(beanMark!=null){
             String tableName=beanMark.tableName();
-            String sqlCommand="SELECT * FROM "+tableName+" WHERE "+key+" = \'"+value.toString()+"\'";
-            return sqlCommand;
+            return "SELECT * FROM "+tableName+" WHERE "+key+" = '"+value.toString()+"'";
+        }
+        return null;
+    }
+    public static String selectAll(Class<?> beanClass){
+        BeanMark beanMark=beanClass.getAnnotation(BeanMark.class);
+        if(beanMark!=null){
+            String tableName=beanMark.tableName();
+            return "SELECT * FROM "+tableName;
+        }
+        return null;
+    }
+    public static String delete(Class<?> beanClass,String key,Object value){
+        BeanMark beanMark=beanClass.getAnnotation(BeanMark.class);
+        if(beanMark!=null){
+            String tableName=beanMark.tableName();
+            return "DELETE FROM "+tableName+" WHERE "+key+ " = '" +value.toString()+"'";
         }
         return null;
     }

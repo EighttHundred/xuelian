@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 
 import net.sf.json.JSONObject;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 public class JsonProcessor {
     /*
     private static int nextQuote(String data, int pos, int len) {
@@ -85,11 +87,20 @@ public class JsonProcessor {
         }
         return jsonObject;
     }
-    public static String layuiParse(JSONObject[] jsons){
+
+    public static String layuiParse(List<JSONObject> jsons){
+        if(jsons.size()==0) return "[]";
         String data="[";
         for(JSONObject json:jsons){
             data+=json.toString()+",";
         }
         return data.substring(0, data.length()-1)+"]";
+    }
+
+    public static <T> String parse(List<T> list){
+        List<JSONObject> jsons=new ArrayList<>();
+        for(T t:list)
+            jsons.add(JsonProcessor.toJson(t));
+        return JsonProcessor.layuiParse(jsons);
     }
 }

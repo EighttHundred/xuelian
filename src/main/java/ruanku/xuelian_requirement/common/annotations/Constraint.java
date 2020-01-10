@@ -11,4 +11,5 @@ public @interface Constraint
 {
     boolean isPrimaryKey() default false;
     boolean notNull() default false;
+    boolean isConstant() default false;
 }

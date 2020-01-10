@@ -1,16 +1,6 @@
 package test;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Test;
-
-import ruanku.xuelian_requirement.model.*;
-import ruanku.xuelian_requirement.service.UserService;
-import ruanku.xuelian_requirement.common.processors.*;
 
 
 public class UserTest {
